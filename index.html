@@ -320,22 +320,29 @@
   /* ── MARCHÉ ── */
   #market { background: var(--dark); }
   .market-cards {
-    display: grid; grid-template-columns: repeat(3, 1fr);
+    display: grid; grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem; margin-top: 3rem;
   }
   .market-card {
     background: var(--card); border: 1px solid var(--border);
     border-radius: 10px; padding: 2rem 1.75rem;
     transition: border-color .2s, transform .2s;
+    position: relative; overflow: hidden;
   }
-  .market-card:hover {
-    border-color: rgba(0,212,255,0.2); transform: translateY(-3px);
+  .market-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
   }
+  .market-card.cyan-card::before { background: linear-gradient(90deg, #5dba82, rgba(93,186,130,0.2)); }
+  .market-card.red-card::before  { background: linear-gradient(90deg, #e05555, rgba(224,85,85,0.2)); }
+  .market-card.cyan-card:hover { border-color: rgba(93,186,130,0.35); transform: translateY(-3px); }
+  .market-card.red-card:hover  { border-color: rgba(224,85,85,0.30); transform: translateY(-3px); }
   .market-card .num {
     font-family: var(--font-display); font-size: 2.2rem;
-    font-weight: 700; color: var(--cyan); line-height: 1;
+    font-weight: 700; line-height: 1;
     margin-bottom: 0.35rem; display: block;
   }
+  .market-card.cyan-card  .num { color: #5dba82; }
+  .market-card.red-card   .num { color: #e05555; }
   .market-card .unit {
     font-size: 0.75rem; color: var(--muted); text-transform: uppercase;
     letter-spacing: 0.08em; margin-bottom: 0.85rem; display: block;
@@ -828,21 +835,19 @@
     </p>
 
     <div class="market-cards">
-      <div class="market-card">
+      <div class="market-card cyan-card">
         <span class="num">5 Md$</span>
         <span class="unit">Marché PAPR mondial en 2032</span>
         <p>Croissance annuelle de 8,3&nbsp;%. Portée par les exigences réglementaires croissantes et la prise de conscience post-COVID.</p>
       </div>
-      <div class="market-card">
+      <div class="market-card red-card">
         <span class="num">40&nbsp;000</span>
         <span class="unit">Décès annuels (France, particules fines)</span>
         <p>Santé Publique France, 2023. ~1 million de personnes exposées aux maladies professionnelles respiratoires en France.</p>
       </div>
-      <div class="market-card">
-        
-        <p>Vs &gt;500–1&nbsp;000€ pour les PAPR concurrents. Business model : 50&nbsp;% matériel + 50&nbsp;% consommables récurrents.</p>
-      </div>
     </div>
+
+
 
     <div class="tech-grid" style="margin-top:4rem;">
       <div class="tech-item">
